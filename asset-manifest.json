@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/Evandro-developer/around-react_ptbr.git/static/css/main.bf1d514e.css",
-    "main.js": "/Evandro-developer/around-react_ptbr.git/static/js/main.2c73239d.js",
+    "main.js": "/Evandro-developer/around-react_ptbr.git/static/js/main.a8837805.js",
     "static/js/787.fae363fb.chunk.js": "/Evandro-developer/around-react_ptbr.git/static/js/787.fae363fb.chunk.js",
     "index.html": "/Evandro-developer/around-react_ptbr.git/index.html",
     "static/media/trash_icon.svg": "/Evandro-developer/around-react_ptbr.git/static/media/trash_icon.ba43124316072f7a8629205eb192dd29.svg",
     "static/media/button_update_avatar.svg": "/Evandro-developer/around-react_ptbr.git/static/media/button_update_avatar.a086f758840ae814ecdece4799d2cf40.svg",
     "main.bf1d514e.css.map": "/Evandro-developer/around-react_ptbr.git/static/css/main.bf1d514e.css.map",
-    "main.2c73239d.js.map": "/Evandro-developer/around-react_ptbr.git/static/js/main.2c73239d.js.map",
+    "main.a8837805.js.map": "/Evandro-developer/around-react_ptbr.git/static/js/main.a8837805.js.map",
     "787.fae363fb.chunk.js.map": "/Evandro-developer/around-react_ptbr.git/static/js/787.fae363fb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.bf1d514e.css",
-    "static/js/main.2c73239d.js"
+    "static/js/main.a8837805.js"
   ]
 }
