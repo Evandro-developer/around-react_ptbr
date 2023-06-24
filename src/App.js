@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
 import Card from "./components/Card";
+import ImagePopup from "./components/ImagePopup";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -18,7 +19,7 @@ function App() {
   const [userAvatar, setUserAvatar] = useState("");
 
   const [cards, setCards] = useState([]);
-  const [selectedCard, setSelectedCard] = useState(null);
+  const [selectedCard, setSelectedCard] = useState(false);
 
   useEffect(() => {
     api.getUserInfo().then((response) => {
@@ -62,7 +63,7 @@ function App() {
   };
 
   const closeImagePopup = () => {
-    setSelectedCard(null);
+    setSelectedCard(false);
   };
 
   return (
@@ -87,6 +88,11 @@ function App() {
             closeAllPopups={closeAllPopups}
             onCardClick={handleCardClick}
             onClose={closeImagePopup}
+          />
+          <ImagePopup
+            selectedCard={selectedCard}
+            onClose={closeImagePopup}
+            isOpen={!!selectedCard}
           />
           <div className="cards">
             {cards.map((card) => (

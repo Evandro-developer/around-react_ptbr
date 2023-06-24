@@ -3,7 +3,6 @@ import closeIconSmall from "../images/close_icon_small.png";
 import closeIcon from "../images/close_icon.png";
 
 function PopupWithForm({
-  style,
   title,
   name,
   isOpen,
@@ -13,8 +12,12 @@ function PopupWithForm({
 }) {
   const popupOpenedClass = isOpen ? `${name}__opened` : "";
 
+  if (!isOpen) {
+    return null;
+  }
+
   return (
-    <section className={`${name} ${popupOpenedClass}`} id={name} style={style}>
+    <section className={`${name} ${popupOpenedClass}`} id={name}>
       <form
         className={`popup__form  ${formClassName}`}
         id={formClassName}
