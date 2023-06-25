@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import api from "./utils/api";
-
-import Header from "./components/Header";
-import Main from "./components/Main";
-import Footer from "./components/Footer";
-import Card from "./components/Card";
-import ImagePopup from "./components/ImagePopup";
+import api from "../utils/api";
+import Header from "./Header";
+import Main from "./Main";
+import Footer from "./Footer";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -19,7 +16,7 @@ function App() {
   const [userAvatar, setUserAvatar] = useState("");
 
   const [cards, setCards] = useState([]);
-  const [selectedCard, setSelectedCard] = useState(false);
+  const [selectedCard, setSelectedCard] = useState();
 
   useEffect(() => {
     api.getUserInfo().then((response) => {
@@ -58,12 +55,12 @@ function App() {
     setIsAddConfirmationPopupOpen(false);
   };
 
-  const handleCardClick = (card) => {
+  const handleCardImageClick = (card) => {
     setSelectedCard(card);
   };
 
   const closeImagePopup = () => {
-    setSelectedCard(false);
+    setSelectedCard(null);
   };
 
   return (
@@ -85,25 +82,12 @@ function App() {
             isAddPlacePopupOpen={isAddPlacePopupOpen}
             isAddConfirmationPopupOpen={isAddConfirmationPopupOpen}
             selectedCard={selectedCard}
+            cards={cards}
             closeAllPopups={closeAllPopups}
-            onCardClick={handleCardClick}
             onClose={closeImagePopup}
+            onCardImageClick={handleCardImageClick}
+            onCardTrashClick={handleConfirmationClick}
           />
-          <ImagePopup
-            selectedCard={selectedCard}
-            onClose={closeImagePopup}
-            isOpen={!!selectedCard}
-          />
-          <div className="cards">
-            {cards.map((card) => (
-              <Card
-                key={card._id}
-                card={card}
-                onCardClick={handleCardClick}
-                onTrashClick={handleConfirmationClick}
-              />
-            ))}
-          </div>
           <Footer />
         </div>
       </div>

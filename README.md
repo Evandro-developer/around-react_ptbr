@@ -21,7 +21,7 @@ Este é o décimo primeiro projeto do curso de desenvolvimento web da Practicum,
 - Integração com uma API RESTful para interações com o servidor..
 
 ### Novas Funcionalidades:
-Nesta versão do projeto "Around The U.S. (Refatorado)", o React foi utilizado como o principal framework para desenvolver a interface do usuário, substituindo a abordagem anterior de JavaScript puro. Os componentes do React foram criados para representar diferentes partes da aplicação, como o cabeçalho e os cartões de imagens.
+Nesta versão do projeto "Around The U.S. (Refatorado)", o React foi utilizado como o principal framework para desenvolver a interface do usuário, substituindo a abordagem anterior de JavaScript puro. Os componentes do React foram criados para representar diferentes partes da aplicação, como o cabeçalho, popups e os cartões de imagens.
 
 Além disso, o React permite o gerenciamento eficiente do estado da aplicação por meio do uso de Hooks, como o useState e useEffect. Esses Hooks permitem controlar e atualizar o estado dos componentes de forma declarativa, facilitando a reatividade da interface.
 

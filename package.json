@@ -2,7 +2,7 @@
   "name": "around-react_ptbr",
   "version": "0.1.0",
   "private": true,
-  "homepage": "git+https://github.com/Evandro-developer/around-react_ptbr.git",
+  "homepage": "https://evandro-developer.github.io/around-react_ptbr/",
   "description": "Projeto 11: Website Responsivo utilizando React, Webpack e Babel para desenvolvimento front-end.",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",

@@ -10,14 +10,11 @@ function PopupWithForm({
   formClassName,
   closeAllPopups,
 }) {
-  const popupOpenedClass = isOpen ? `${name}__opened` : "";
-
   if (!isOpen) {
     return null;
   }
-
   return (
-    <section className={`${name} ${popupOpenedClass}`} id={name}>
+    <section className={`${name} ${isOpen && `${name}__opened`}`} id={name}>
       <form
         className={`popup__form  ${formClassName}`}
         id={formClassName}

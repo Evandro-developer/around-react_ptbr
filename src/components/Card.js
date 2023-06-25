@@ -3,20 +3,19 @@ import trashIcon from "../images/trash_icon.svg";
 import heartIconDisabled from "../images/heart_icon_disabled.png";
 import heartIconEnabled from "../images/heart_icon_enabled.png";
 
-function Card({ card, onCardClick, onTrashClick }) {
+function Card({ card, onCardImageClick, onCardTrashClick }) {
   const { name, link } = card;
-
   const [heartIcon, setHeartIcon] = useState(heartIconDisabled);
 
-  const handleClick = () => {
-    onCardClick(card);
+  const handleCardImageClick = () => {
+    onCardImageClick(card);
   };
 
-  const handleTrashClick = () => {
-    onTrashClick(card);
+  const handleCardTrashClick = () => {
+    onCardTrashClick(card);
   };
 
-  const toggleHeart = () => {
+  const toggleCardLike = () => {
     setHeartIcon(
       heartIcon === heartIconDisabled ? heartIconEnabled : heartIconDisabled
     );
@@ -30,7 +29,7 @@ function Card({ card, onCardClick, onTrashClick }) {
           alt="Icone de remoção para lixeira"
           className="button-trash-icon"
           id="button-trash-icon"
-          onClick={handleTrashClick}
+          onClick={handleCardTrashClick}
         />
       </picture>
       <picture>
@@ -38,7 +37,7 @@ function Card({ card, onCardClick, onTrashClick }) {
           src={link}
           alt="Imagem do local"
           className="card__image"
-          onClick={handleClick}
+          onClick={handleCardImageClick}
         />
       </picture>
       <li className="card__briefing">
@@ -54,7 +53,7 @@ function Card({ card, onCardClick, onTrashClick }) {
                   : ""
               }`}
               id="button-heart-icon"
-              onClick={toggleHeart}
+              onClick={toggleCardLike}
             />
           </picture>
           <p className="card__likes">0</p>

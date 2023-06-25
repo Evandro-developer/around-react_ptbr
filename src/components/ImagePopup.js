@@ -2,8 +2,8 @@ import React from "react";
 import closeIconSmall from "../images/close_icon_small.png";
 import closeIcon from "../images/close_icon.png";
 
-function ImagePopup({ selectedCard, onClose, isOpen }) {
-  if (!isOpen) {
+function ImagePopup({ selectedCard, onClose }) {
+  if (!selectedCard) {
     return null;
   }
 

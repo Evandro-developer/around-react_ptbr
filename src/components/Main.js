@@ -1,5 +1,8 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
+import Button from "./Button";
+import ImagePopup from "./ImagePopup";
+import Card from "./Card";
 
 function Main({
   isEditAvatarPopupOpen,
@@ -7,6 +10,11 @@ function Main({
   isAddPlacePopupOpen,
   isAddConfirmationPopupOpen,
   closeAllPopups,
+  selectedCard,
+  onClose,
+  cards,
+  onCardImageClick,
+  onCardTrashClick,
 }) {
   return (
     <main>
@@ -41,9 +49,9 @@ function Main({
           />
           <span className="popup__input-error popup-input-type-job-error"></span>
         </label>
-        <button type="submit" className="popup__button" id="popup__button">
+        <Button type="submit" className="popup__button" id="popup__button">
           Salvar
-        </button>
+        </Button>
       </PopupWithForm>
 
       <PopupWithForm
@@ -64,13 +72,13 @@ function Main({
           />
           <span className="popup__input-error popup-input-type-avatar-img-link-error"></span>
         </label>
-        <button
+        <Button
           type="submit"
           className="popup__button popup__button_avatar-edit"
           id="popup__button_avatar-edit"
         >
           Salvar
-        </button>
+        </Button>
       </PopupWithForm>
 
       <PopupWithForm
@@ -103,13 +111,13 @@ function Main({
           />
           <span className="popup__input-error popup-input-type-img-link-error"></span>
         </label>
-        <button
+        <Button
           type="submit"
           className="popup__button popup__button_card-add"
           id="popup__button_card-add"
         >
           Salvar
-        </button>
+        </Button>
       </PopupWithForm>
 
       <PopupWithForm
@@ -119,14 +127,27 @@ function Main({
         name="popup_with-confirmation"
         formClassName="popup__form_with-confirmation"
       >
-        <button
+        <Button
           type="submit"
           className="popup__button popup__button_with-confirmation"
           id="popup__button_with-confirmation"
         >
           Sim
-        </button>
+        </Button>
       </PopupWithForm>
+
+      <ImagePopup selectedCard={selectedCard} onClose={onClose} />
+
+      <section className="cards">
+        {cards.map((card) => (
+          <Card
+            key={card._id}
+            card={card}
+            onCardImageClick={onCardImageClick}
+            onCardTrashClick={onCardTrashClick}
+          />
+        ))}
+      </section>
     </main>
   );
 }
