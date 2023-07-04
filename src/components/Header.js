@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 
+import CurrentUserContext from "../contexts/CurrentUserContext";
+
 import logo from "../images/logo.png";
 import logoSmall from "../images/logo_small.png";
 import buttonEditSmall from "../images/button_edit_small.png";
@@ -7,7 +9,6 @@ import buttonEdit from "../images/button_edit.png";
 import buttonAddLarge from "../images/button_add_large.png";
 import buttonAdd from "../images/button_add.png";
 import buttonUpdateAvatar from "../images/button_update_avatar.svg";
-import { CurrentUserContext } from "./contexts/CurrentUserContext";
 
 function Header({ onEditAvatarClick, onEditProfileClick, onAddPlaceClick }) {
   const currentUser = useContext(CurrentUserContext);

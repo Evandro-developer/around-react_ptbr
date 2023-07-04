@@ -1,9 +1,10 @@
 import { createContext, useState, useEffect } from "react";
-import api from "../../utils/api";
 
-export const CurrentUserContext = createContext(null);
+import api from "../utils/api";
 
-export const CurrentUserContextProvider = ({ children }) => {
+const CurrentUserContext = createContext();
+
+export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
@@ -18,3 +19,5 @@ export const CurrentUserContextProvider = ({ children }) => {
     </CurrentUserContext.Provider>
   );
 };
+
+export default CurrentUserContext;

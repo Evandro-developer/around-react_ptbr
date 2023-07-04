@@ -8,9 +8,19 @@
   right: 18px;
   z-index: 1;
   transition: 0.3s ease-in-out;
+  animation: fadeIn 0.3s ease-in-out forwards;
 }
 
 .button-trash-icon:hover {
   transition: 0.3s ease-in-out;
   opacity: 0.6;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
