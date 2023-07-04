@@ -44,11 +44,11 @@ Dessa forma, nesta versão do projeto "Around The U.S. (Refatorado)", o React fo
 ### Licença:
 - Este projeto é open source. Você é livre para usar e modificar, desde que mantenha a atribuição dos autores originais.
 
-### Links do Projeto 11: Around The U.S. (Refatorado):
+### Links do Projeto 12: Around The U.S. (Refatorado):
 - Acesse o código-fonte do projeto: https://github.com/Evandro-developer/around-react_ptbr
 - Acesse o web site: https://evandro-developer.github.io/around-react_ptbr
 
-#### Links do Projeto 10: Around The U.S. (Refatorado):
+#### Links do Projeto 10: Around The U.S. (Java Script Nativo):
 - Acesse o código-fonte do projeto: https://github.com/Evandro-developer/web_project_4_ptbr
 - Acesse o web site: https://evandro-developer.github.io/web_project_4_ptbr
 

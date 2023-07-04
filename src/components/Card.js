@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 
-import CurrentUserContext from "./contexts/CurrentUserContext";
+import { CurrentUserContext } from "./contexts/CurrentUserContext";
 
 import trashIcon from "../images/trash_icon.svg";
 import heartIconDisabled from "../images/heart_icon_disabled.png";
