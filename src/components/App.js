@@ -1,97 +1,134 @@
 import React, { useState, useEffect } from "react";
 import api from "../utils/api";
+import CurrentUserContext from "./contexts/CurrentUserContext";
 import Header from "./Header";
 import Main from "./Main";
+import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
+import AddPlacePopup from "./AddPlacePopup";
+import ConfirmationPopup from "./ConfirmationPopup";
 import Footer from "./Footer";
 
 function App() {
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
-  const [isAddConfirmationPopupOpen, setIsAddConfirmationPopupOpen] =
-    useState(false);
+  const [activePopup, setActivePopup] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [selectedCard, setSelectedCard] = useState(null);
+  const [cards, setCardsList] = useState([]);
+  const [cardToDelete, setCardToDelete] = useState(null);
 
-  const [userName, setUserName] = useState("");
-  const [userDescription, setUserDescription] = useState("");
-  const [userAvatar, setUserAvatar] = useState("");
-
-  const [cards, setCards] = useState([]);
-  const [selectedCard, setSelectedCard] = useState();
+  useEffect(() => {
+    api.getCardsList().then((response) => {
+      setCardsList(response);
+    });
+  }, []);
 
   useEffect(() => {
     api.getUserInfo().then((response) => {
-      setUserName(response.name);
-      setUserDescription(response.about);
-      setUserAvatar(response.avatar);
+      setCurrentUser(response);
     });
   }, []);
-
-  useEffect(() => {
-    api.getInitialCards().then((response) => {
-      setCards(response);
-    });
-  }, []);
-
-  const handleEditProfileClick = () => {
-    setIsEditProfilePopupOpen(true);
-  };
 
   const handleEditAvatarClick = () => {
-    setIsEditAvatarPopupOpen(true);
+    setActivePopup("editAvatar");
+  };
+
+  const handleEditProfileClick = () => {
+    setActivePopup("editProfile");
   };
 
   const handleAddPlaceClick = () => {
-    setIsAddPlacePopupOpen(true);
-  };
-
-  const handleConfirmationClick = () => {
-    setIsAddConfirmationPopupOpen(true);
+    setActivePopup("addPlace");
   };
 
   const closeAllPopups = () => {
-    setIsEditProfilePopupOpen(false);
-    setIsEditAvatarPopupOpen(false);
-    setIsAddPlacePopupOpen(false);
-    setIsAddConfirmationPopupOpen(false);
+    setActivePopup(null);
   };
 
-  const handleCardImageClick = (card) => {
-    setSelectedCard(card);
+  const handleUpdateUser = (newUser) => {
+    api.setUserInfo(newUser.name, newUser.about).then((updatedUser) => {
+      setCurrentUser(updatedUser);
+      closeAllPopups();
+    });
   };
 
-  const closeImagePopup = () => {
-    setSelectedCard(null);
+  const handleUpdateAvatar = (newAvatar) => {
+    api.setUserAvatar(newAvatar.avatar).then((updatedUser) => {
+      setCurrentUser(updatedUser);
+      closeAllPopups();
+    });
+  };
+
+  const handleAddPlace = (newCard) => {
+    api.addNewCard(newCard.name, newCard.link).then((newCard) => {
+      setCardsList([newCard, ...cards]);
+      closeAllPopups();
+    });
+  };
+
+  const handleCardDeleteClick = (card) => {
+    setCardToDelete(card);
+    setActivePopup("confirmation");
+  };
+
+  const handleCardDeleteConfirm = async () => {
+    if (cardToDelete) {
+      await api.deleteCard(cardToDelete._id);
+      setCardsList((state) => state.filter((c) => c._id !== cardToDelete._id));
+      setCardToDelete(null);
+      closeAllPopups();
+    }
   };
 
   return (
-    <>
+    <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <div className="root">
           <Header
-            onEditProfileClick={handleEditProfileClick}
+            currentUser={currentUser}
             onEditAvatarClick={handleEditAvatarClick}
+            onEditProfileClick={handleEditProfileClick}
             onAddPlaceClick={handleAddPlaceClick}
-            onAddConfirmationPopupOpen={handleConfirmationClick}
-            userName={userName}
-            userDescription={userDescription}
-            userAvatar={userAvatar}
           />
           <Main
-            isEditProfilePopupOpen={isEditProfilePopupOpen}
-            isEditAvatarPopupOpen={isEditAvatarPopupOpen}
-            isAddPlacePopupOpen={isAddPlacePopupOpen}
-            isAddConfirmationPopupOpen={isAddConfirmationPopupOpen}
-            selectedCard={selectedCard}
+            api={api}
+            onCardTrashClick={handleCardDeleteClick}
             cards={cards}
-            closeAllPopups={closeAllPopups}
-            onClose={closeImagePopup}
-            onCardImageClick={handleCardImageClick}
-            onCardTrashClick={handleConfirmationClick}
+            setCardsList={setCardsList}
+            selectedCard={selectedCard}
+            setSelectedCard={setSelectedCard}
           />
+          {activePopup === "editProfile" && (
+            <EditProfilePopup
+              isOpen={true}
+              onClose={closeAllPopups}
+              onUpdateUser={handleUpdateUser}
+            />
+          )}
+          {activePopup === "editAvatar" && (
+            <EditAvatarPopup
+              isOpen={true}
+              onClose={closeAllPopups}
+              onUpdateAvatar={handleUpdateAvatar}
+            />
+          )}
+          {activePopup === "addPlace" && (
+            <AddPlacePopup
+              isOpen={true}
+              onClose={closeAllPopups}
+              onAddPlace={handleAddPlace}
+            />
+          )}
+          {activePopup === "confirmation" && (
+            <ConfirmationPopup
+              isOpen={true}
+              onClose={closeAllPopups}
+              onConfirm={handleCardDeleteConfirm}
+            />
+          )}
           <Footer />
         </div>
       </div>
-    </>
+    </CurrentUserContext.Provider>
   );
 }
 

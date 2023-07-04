@@ -10,14 +10,19 @@
   line-height: 18px;
   border: none;
   width: 100%;
-  border-bottom: 1px solid rgba(255, 0, 0, 0.6);
+  border-bottom: 1px solid #545454;
   outline: 0;
   padding: 7px 0;
   margin: 0;
-  opacity: 1;
+  opacity: 0.4;
 }
 
 .popup__input::placeholder {
   color: #545454;
+  opacity: 0.8;
+}
+
+.popup__input:valid {
+  border-bottom-color: #545454;
   opacity: 0.8;
 }

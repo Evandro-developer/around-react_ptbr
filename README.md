@@ -1,11 +1,11 @@
-# Projeto 11: Around The U.S. (Refatorado).
+# Projeto 12: Around The U.S. (Refatorado).
 
 ## Refatoração com o framework React.
 
 ---
 
 ### Descrição do Projeto:
-Este é o décimo primeiro projeto do curso de desenvolvimento web da Practicum, que consiste em um site responsivo criado no Projeto 4 e agora o React foi utilizado como o principal framework para desenvolver a interface do usuário. Assim como o projeto anterior, o site é uma plataforma de viagens pelos Estados Unidos, onde o usuário pode visualizar imagens de diferentes lugares. As novas funcionalidades permitem que os usuários adicionem suas próprias imagens, curtam imagens adicionadas por outros usuários e editem seus perfis.
+Este é o décimo segundo projeto do curso de desenvolvimento web da Practicum, que consiste em um site responsivo criado no Projeto 4 e agora refatorado para usar o React como o principal framework. Este projeto manteve todas as funcionalidades do Projeto 10, que incluem a integração com um servidor back-end, permitindo aos usuários adicionar suas próprias imagens, curtir imagens adicionadas por outros usuários e editar seus perfis. No entanto, com a refatoração para React, a implementação dessas funcionalidades se tornou mais eficiente e a estrutura do projeto agora é mais modular e escalável.
 
 ### Principais Recursos:
 - Site responsivo para diversas resoluções;
@@ -18,7 +18,7 @@ Este é o décimo primeiro projeto do curso de desenvolvimento web da Practicum,
 - Recurso source para arquivos de imagem, carregamento da imagem específica conforme a resolução solicitada;
 - Utilização dos princípios DRY "Don't Repeat Yourself";
 - Cada arquivo tem uma responsabilidade bem definida e facilita a reutilização de código em outros projetos;
-- Integração com uma API RESTful para interações com o servidor..
+- Integração com uma API RESTful para interações com o servidor.
 
 ### Novas Funcionalidades:
 Nesta versão do projeto "Around The U.S. (Refatorado)", o React foi utilizado como o principal framework para desenvolver a interface do usuário, substituindo a abordagem anterior de JavaScript puro. Os componentes do React foram criados para representar diferentes partes da aplicação, como o cabeçalho, popups e os cartões de imagens.
@@ -53,3 +53,4 @@ Dessa forma, nesta versão do projeto "Around The U.S. (Refatorado)", o React fo
 - Acesse o web site: https://evandro-developer.github.io/web_project_4_ptbr
 
 ---
+

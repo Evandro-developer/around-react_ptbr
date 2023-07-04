@@ -1,4 +1,4 @@
-class Api {
+export class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
@@ -19,7 +19,7 @@ class Api {
     }
   }
 
-  async addNewUserInfo(name, job) {
+  async setUserInfo(name, job) {
     try {
       const response = await fetch(`${this._baseUrl}/users/me`, {
         method: "PATCH",
@@ -38,7 +38,7 @@ class Api {
     }
   }
 
-  async addNewUserInfoAvatar(link) {
+  async setUserAvatar(link) {
     try {
       const response = await fetch(`${this._baseUrl}/users/me/avatar`, {
         method: "PATCH",
@@ -56,7 +56,7 @@ class Api {
     }
   }
 
-  async getInitialCards() {
+  async getCardsList() {
     try {
       const response = await fetch(`${this._baseUrl}/cards`, {
         method: "GET",

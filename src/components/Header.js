@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+
 import logo from "../images/logo.png";
 import logoSmall from "../images/logo_small.png";
 import buttonEditSmall from "../images/button_edit_small.png";
@@ -6,15 +7,11 @@ import buttonEdit from "../images/button_edit.png";
 import buttonAddLarge from "../images/button_add_large.png";
 import buttonAdd from "../images/button_add.png";
 import buttonUpdateAvatar from "../images/button_update_avatar.svg";
+import CurrentUserContext from "./contexts/CurrentUserContext";
 
-function Header({
-  onEditAvatarClick,
-  onEditProfileClick,
-  onAddPlaceClick,
-  userAvatar,
-  userName,
-  userDescription,
-}) {
+function Header({ onEditAvatarClick, onEditProfileClick, onAddPlaceClick }) {
+  const currentUser = useContext(CurrentUserContext);
+
   return (
     <header className="header">
       <picture>
@@ -27,11 +24,13 @@ function Header({
           <div className="header__avatar-edit">
             <picture>
               <img
-                src={userAvatar}
+                src={currentUser?.avatar}
                 alt="Imagem do Avatar"
                 className="header__avatar"
                 id="header__avatar"
-                style={{ backgroundImage: `url(${userAvatar})` }}
+                style={{
+                  backgroundImage: `url(${currentUser?.avatar})`,
+                }}
               />
             </picture>
             <picture>
@@ -45,8 +44,8 @@ function Header({
             </picture>
           </div>
           <div className="header__briefing">
-            <h1 className="header__title">{userName}</h1>
-            <h2 className="header__subtitle">{userDescription}</h2>
+            <h1 className="header__title">{currentUser?.name}</h1>
+            <h2 className="header__subtitle">{currentUser?.about}</h2>
             <picture>
               <source media="(max-width: 768px)" srcSet={buttonEditSmall} />
               <img

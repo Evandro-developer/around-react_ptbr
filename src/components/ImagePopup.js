@@ -1,11 +1,16 @@
 import React from "react";
+
 import closeIconSmall from "../images/close_icon_small.png";
 import closeIcon from "../images/close_icon.png";
 
-function ImagePopup({ selectedCard, onClose }) {
+function ImagePopup({ selectedCard, onCloseImageClick }) {
   if (!selectedCard) {
     return null;
   }
+
+  const closeImagePopup = () => {
+    onCloseImageClick();
+  };
 
   return (
     <section
@@ -31,7 +36,7 @@ function ImagePopup({ selectedCard, onClose }) {
             alt="Imagem do ícone de fechamento da janela do popup"
             className="img-popup-card__closed-btn"
             id="img-popup-card__closed-btn"
-            onClick={onClose}
+            onClick={closeImagePopup}
           />
         </picture>
       </div>

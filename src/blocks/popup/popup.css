@@ -1,5 +1,5 @@
 .popup {
-  display: none;
+  display: block;
   position: fixed;
   top: 0;
   left: 0;
@@ -13,10 +13,8 @@
 @keyframes fadeOut {
   from {
     opacity: 1;
-    visibility: visible;
   }
   to {
     opacity: 0;
-    visibility: hidden;
   }
 }
