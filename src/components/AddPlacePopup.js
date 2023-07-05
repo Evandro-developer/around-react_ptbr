@@ -16,16 +16,16 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
   };
 
   const {
-    inputActive,
-    handleInputFocus,
-    handleInputBlur,
     formData,
     setFormData,
-    handleInputChange,
-    isFormValid,
     validity,
     setValidity,
     validationMessage,
+    inputActive,
+    handleInputFocus,
+    handleInputBlur,
+    handleInputChange,
+    isFormValid,
   } = FormValidator(validationConfig, { name, link });
 
   useEffect(() => {

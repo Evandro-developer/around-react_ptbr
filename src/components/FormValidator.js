@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 function FormValidator(validationConfig, initialData = {}) {
   const [formData, setFormData] = useState(initialData);
-  const [_, setErrors] = useState({});
+  const [errors, setErrors] = useState({});
   const [validity, setValidity] = useState({});
   const [validationMessage, setValidationMessage] = useState({});
   const [inputActive, setInputActive] = useState({});
@@ -33,10 +33,12 @@ function FormValidator(validationConfig, initialData = {}) {
       ...prevErrors,
       [name]: errorResults.errors,
     }));
+
     setValidity((prevValidity) => ({
       ...prevValidity,
       [name]: errorResults.validity,
     }));
+
     setValidationMessage((prevValidationMessage) => ({
       ...prevValidationMessage,
       [name]: errorResults.validationMessage,
@@ -54,7 +56,9 @@ function FormValidator(validationConfig, initialData = {}) {
     const fieldConfig = validationConfig[fieldName];
 
     if (!fieldConfig) {
-      throw new Error(`No validation config for field: ${fieldName}`);
+      throw new Error(
+        `Nenhuma configuração de validação para o campo: ${fieldName}`
+      );
     }
     let errors = "";
     let validity = true;
@@ -137,16 +141,17 @@ function FormValidator(validationConfig, initialData = {}) {
   };
 
   return {
-    inputActive,
-    handleInputFocus,
-    handleInputBlur,
     formData,
     setFormData,
-    handleInputChange,
-    isFormValid,
+    errors,
     validity,
     setValidity,
     validationMessage,
+    inputActive,
+    handleInputFocus,
+    handleInputBlur,
+    handleInputChange,
+    isFormValid,
   };
 }
 

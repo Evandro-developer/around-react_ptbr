@@ -105,6 +105,7 @@ function App() {
               isOpen={true}
               onClose={closeAllPopups}
               onUpdateUser={handleUpdateUser}
+              currentUser={currentUser} // Passando currentUser como prop
             />
           )}
           {activePopup === "editAvatar" && (

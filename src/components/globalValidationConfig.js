@@ -13,7 +13,7 @@ export const globalValidationConfig = {
     maxLength: 40,
     maxLengthErrorMessage: "Nome deve ter no máximo 40 caracteres",
   },
-  description: {
+  about: {
     required: true,
     errorMessage: "Descrição é requerida",
     minLength: 2,

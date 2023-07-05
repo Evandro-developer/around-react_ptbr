@@ -1,33 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
+
 import PopupWithForm from "./PopupWithForm";
 import SubmitButton from "./SubmitButton";
 import FormValidator from "./FormValidator";
+
+import CurrentUserContext from "../contexts/CurrentUserContext";
 import { globalValidationConfig } from "./globalValidationConfig";
 
 function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   const nameTouched = false;
-  const descriptionTouched = false;
+  const aboutTouched = false;
   const name = "";
-  const description = "";
-  const { name: nameConfig, description: descriptionConfig } =
-    globalValidationConfig;
+  const about = "";
+
+  const { name: nameConfig, about: aboutConfig } = globalValidationConfig;
   const validationConfig = {
     name: nameConfig,
-    description: descriptionConfig,
+    about: aboutConfig,
   };
 
+  const currentUser = useContext(CurrentUserContext);
+
   const {
-    inputActive,
-    handleInputFocus,
-    handleInputBlur,
     formData,
     setFormData,
-    handleInputChange,
-    isFormValid,
     validity,
     setValidity,
     validationMessage,
-  } = FormValidator(validationConfig, { name, description });
+    inputActive,
+    handleInputFocus,
+    handleInputBlur,
+    handleInputChange,
+    isFormValid,
+  } = FormValidator(validationConfig, { name, about });
 
   useEffect(() => {
     if (isOpen) {
@@ -36,7 +41,10 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   }, [isOpen]);
 
   const resetForm = () => {
-    setFormData({ name: "", description: "" });
+    setFormData((prevFormData) => ({
+      name: prevFormData.name ?? currentUser?.name,
+      about: prevFormData.about ?? currentUser?.about,
+    }));
     setValidity({});
   };
 
@@ -44,7 +52,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
     if (!isFormValid()) {
       return;
     }
-    onUpdateUser({ name: formData.name, about: formData.description });
+    onUpdateUser({ name: formData.name, about: formData.about });
   }
 
   return (
@@ -70,7 +78,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
           required
           minLength="2"
           maxLength="40"
-          placeholder="Insira o nome do Usuário"
+          placeholder={currentUser?.name}
           value={formData.name}
           onChange={handleInputChange}
           onFocus={() => handleInputFocus("name")}
@@ -92,31 +100,30 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       <label className="popup__field">
         <input
           type="text"
-          name="description"
+          name="about"
           className={`popup__input ${
-            !validity.description ? "popup__input_type_error" : ""
-          } ${inputActive.description ? "popup__input_active" : ""}`}
+            !validity.about ? "popup__input_type_error" : ""
+          } ${inputActive.about ? "popup__input_active" : ""}`}
           id="popup-input-type-job"
           required
           minLength="2"
           maxLength="200"
-          placeholder="Insira sua Profissão"
-          value={formData.description}
+          placeholder={currentUser?.about}
+          value={formData.about}
           onChange={handleInputChange}
-          onFocus={() => handleInputFocus("description")}
-          onBlur={() => handleInputBlur("description")}
+          onFocus={() => handleInputFocus("about")}
+          onBlur={() => handleInputBlur("about")}
         />
-        {!validity.description &&
-          (inputActive.description ||
-            (descriptionTouched && !formData.description)) && (
+        {!validity.about &&
+          (inputActive.about || (aboutTouched && !formData.about)) && (
             <span
               className={`popup__input-error popup-input-type-job-error ${
-                !validity.description ? "popup__error_visible" : ""
+                !validity.about ? "popup__error_visible" : ""
               }`}
             >
-              {!formData.description
-                ? validationConfig.description.errorMessage
-                : validationMessage.description}
+              {!formData.about
+                ? validationConfig.about.errorMessage
+                : validationMessage.about}
             </span>
           )}
       </label>

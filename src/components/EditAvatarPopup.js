@@ -13,16 +13,16 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
   };
 
   const {
-    inputActive,
-    handleInputFocus,
-    handleInputBlur,
     formData,
     setFormData,
-    handleInputChange,
-    isFormValid,
     validity,
     setValidity,
     validationMessage,
+    inputActive,
+    handleInputFocus,
+    handleInputBlur,
+    handleInputChange,
+    isFormValid,
   } = FormValidator(validationConfig, { avatar: "" });
 
   useEffect(() => {
