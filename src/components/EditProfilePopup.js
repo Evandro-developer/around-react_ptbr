@@ -8,18 +8,17 @@ import CurrentUserContext from "../contexts/CurrentUserContext";
 import { globalValidationConfig } from "./globalValidationConfig";
 
 function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
+  const currentUser = useContext(CurrentUserContext);
   const nameTouched = false;
   const aboutTouched = false;
-  const name = "";
-  const about = "";
+  const name = currentUser?.name; // aqui trazemos currentUser.name ao montar o popup
+  const about = currentUser?.about; // aqui trazemos currentUser.about ao montar o popup
 
   const { name: nameConfig, about: aboutConfig } = globalValidationConfig;
   const validationConfig = {
     name: nameConfig,
     about: aboutConfig,
   };
-
-  const currentUser = useContext(CurrentUserContext);
 
   const {
     formData,
@@ -40,17 +39,16 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
     }
   }, [isOpen]);
 
+  // impede que button submit carrege habilitado e com campos preenchidos do formulario
+  // se os dados da ultima alteracao ou da Api forem carregados sem resetForm os campos serão preenchidos e o button submit será habilitado
   const resetForm = () => {
-    setFormData((prevFormData) => ({
-      name: prevFormData.name ?? currentUser?.name,
-      about: prevFormData.about ?? currentUser?.about,
-    }));
+    setFormData({ name: "", about: "" }); // aqui deve ser strings vazias para limpeza dos campos do formulario
     setValidity({});
   };
 
   function handleSubmit() {
     if (!isFormValid()) {
-      return;
+      return; // habilita button submit se o dados inseridos forem validados
     }
     onUpdateUser({ name: formData.name, about: formData.about });
   }
